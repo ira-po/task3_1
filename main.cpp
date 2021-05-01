@@ -113,76 +113,69 @@ int dayOfWeekFrom() {
 }
 
 int daysBetweenDates() {
-    int a, b, c, d, e, f, x, y = 0;
+    int d1, m1, y1, d2, m2, y2;
+    int x, y = 0;
     int leap, k;
-    int month1 = 31,
-        month2 = 28,
-        month3 = 31,
-        month4 = 30,
-        month5 = 31,
-        month6 = 30,
-        month7 = 31,
-        month8 = 31,
-        month9 = 30,
-        month10 = 31,
-        month11 = 30,
-        month12 = 31;
+    int months [12] = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
 
     cout << "Введiть початкову дату (через пробiл) : ";
-    cin >> a >> b >> c;
+    cin >> d1 >> m1 >> y1;
     cout << "Введiть кiнцеву дату (через пробiл) : ";
-    cin >> d >> e >> f;
+    cin >> d2 >> m2 >> y2;
+
+    // validate start date < end date
 
 
-    leap = c;
+    leap = y1;
     k = 0;
-    while (leap <= f)
+    while (leap <= y2)
     {
-
+        // високосний рік
         if (leap % 4 == 0 && leap % 100 != 0 || leap % 400 == 0)
         {
             k = k + 1;
         }
 
         leap++;
-
     }
 
 
-    if (b == 1) { x = a; }
-    else if (b == 2) { x = month1 + a; }
-    else if (b == 3) { x = month1 + month2 + a; }
-    else if (b == 4) { x = month1 + month2 + month3 + a; }
-    else if (b == 5) { x = month1 + month2 + month3 + month4 + a; }
-    else if (b == 6) { x = month1 + month2 + month3 + month4 + month5 + a; }
-    else if (b == 7) { x = month1 + month2 + month3 + month4 + month5 + month6 + a; }
-    else if (b == 8) { x = month1 + month2 + month3 + month4 + month5 + month6 + month7 + a; }
-    else if (b == 9) { x = month1 + month2 + month3 + month4 + month5 + month6 + month7 + month8 + a; }
-    else if (b == 10) { x = month1 + month2 + month3 + month4 + month5 + month6 + month7 + month8 + month9 + a; }
-    else if (b == 11) { x = month1 + month2 + month3 + month4 + month5 + month6 + month7 + month8 + month9 + month10 + a; }
-    else if (b == 12) { x = month1 + month2 + month3 + month4 + month5 + month6 + month7 + month8 + month9 + month10 + month11 + a; }
 
-    if (e == 1) { y = d; }
-    else if (e == 2) { y = month1 + d; }
-    else if (e == 3) { y = month1 + month2 + d; }
-    else if (e == 4) { y = month1 + month2 + month3 + d; }
-    else if (e == 5) { y = month1 + month2 + month3 + month4 + d; }
-    else if (e == 6) { y = month1 + month2 + month3 + month4 + month5 + d; }
-    else if (e == 7) { y = month1 + month2 + month3 + month4 + month5 + month6 + d; }
-    else if (e == 8) { y = month1 + month2 + month3 + month4 + month5 + month6 + month7 + d; }
-    else if (e == 9) { y = month1 + month2 + month3 + month4 + month5 + month6 + month7 + month8 + d; }
-    else if (e == 10) { y = month1 + month2 + month3 + month4 + month5 + month6 + month7 + month8 + month9 + d; }
-    else if (e == 11) { y = month1 + month2 + month3 + month4 + month5 + month6 + month7 + month8 + month9 + month10 + d; }
-    else if (e == 12) { y = month1 + month2 + month3 + month4 + month5 + month6 + month7 + month8 + month9 + month10 + month11 + d; }
-    if ((c % 4 == 0 && leap % 100 != 0 || leap % 400 == 0) && b > 2) { k = k - 1; }
-    if ((f % 4 == 0 && leap % 100 != 0 || leap % 400 == 0) && d <= 29 && e < 3) { k = k - 1; }
+    // if (m1 == 1) { x = d1; }
+    // else if (m1 == 2) { x = month1 + a; }
+    // else if (b == 3) { x = month1 + month2 + a; }
+    // else if (b == 4) { x = month1 + month2 + month3 + a; }
+    // else if (b == 5) { x = month1 + month2 + month3 + month4 + a; }
+    // else if (b == 6) { x = month1 + month2 + month3 + month4 + month5 + a; }
+    // else if (b == 7) { x = month1 + month2 + month3 + month4 + month5 + month6 + a; }
+    // else if (b == 8) { x = month1 + month2 + month3 + month4 + month5 + month6 + month7 + a; }
+    // else if (b == 9) { x = month1 + month2 + month3 + month4 + month5 + month6 + month7 + month8 + a; }
+    // else if (b == 10) { x = month1 + month2 + month3 + month4 + month5 + month6 + month7 + month8 + month9 + a; }
+    // else if (b == 11) { x = month1 + month2 + month3 + month4 + month5 + month6 + month7 + month8 + month9 + month10 + a; }
+    // else if (b == 12) { x = month1 + month2 + month3 + month4 + month5 + month6 + month7 + month8 + month9 + month10 + month11 + a; }
 
-    if (c == f)
+    // if (e == 1) { y = d; }
+    // else if (e == 2) { y = month1 + d; }
+    // else if (e == 3) { y = month1 + month2 + d; }
+    // else if (e == 4) { y = month1 + month2 + month3 + d; }
+    // else if (e == 5) { y = month1 + month2 + month3 + month4 + d; }
+    // else if (e == 6) { y = month1 + month2 + month3 + month4 + month5 + d; }
+    // else if (e == 7) { y = month1 + month2 + month3 + month4 + month5 + month6 + d; }
+    // else if (e == 8) { y = month1 + month2 + month3 + month4 + month5 + month6 + month7 + d; }
+    // else if (e == 9) { y = month1 + month2 + month3 + month4 + month5 + month6 + month7 + month8 + d; }
+    // else if (e == 10) { y = month1 + month2 + month3 + month4 + month5 + month6 + month7 + month8 + month9 + d; }
+    // else if (e == 11) { y = month1 + month2 + month3 + month4 + month5 + month6 + month7 + month8 + month9 + month10 + d; }
+    // else if (e == 12) { y = month1 + month2 + month3 + month4 + month5 + month6 + month7 + month8 + month9 + month10 + month11 + d; }
+    // if ((c % 4 == 0 && leap % 100 != 0 || leap % 400 == 0) && b > 2) { k = k - 1; }
+    // if ((f % 4 == 0 && leap % 100 != 0 || leap % 400 == 0) && d <= 29 && e < 3) { k = k - 1; }
+
+
+    if (y1 == y2)
     {
         cout << "Кiлькiсть днiв якi пройшли вiд дати1 до дати2: " << (y - x) + k << endl;
     }
     else
-        cout << "Кiлькiсть днiв якi пройшли вiд дати1 до дати2:" << (f - c) * 365 + ((y - x) + k) << endl;
+        cout << "Кiлькiсть днiв якi пройшли вiд дати1 до дати2:" << (y2 - y1) * 365 + ((y - x) + k) << endl;
     cout << k;
     return 0;
 }
