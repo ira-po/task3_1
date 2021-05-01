@@ -129,13 +129,18 @@ int checkLeapYearsBetween(int y1, int y2) {
 int calculateDaysFor(int m1, int months_count) {
     int months [12] = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
     int days = 0;
-    cout << m1 << endl;
-    cout << months_count << endl;
-    for (int i = m1-1; i <= (months_count); i++) {
+
+    for (int i = m1-1; i <= (months_count+(m1-2)); i++) {
         int k = i;
         if (i > 11) {
-            k = 0;
+            k = i % 12;
         }
+        // debug section
+        // cout << " k:";
+        // cout << k;
+        // cout << " i:";
+        // cout << i;
+
         days = days + months[k];
     }
     cout << days << endl;
@@ -152,7 +157,7 @@ int daysBetweenDates() {
     cout << "Введiть кiнцеву дату (через пробiл) : ";
     cin >> d2 >> m2 >> y2;
 
-    // validate date1 < date2 !!!
+    //TODO validate date1 < date2 !!!
 
     // debug section
     // cout << d1 << endl;
