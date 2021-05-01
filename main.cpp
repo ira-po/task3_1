@@ -56,7 +56,7 @@ void GDate(long JD, int& y, int& m, int& d)
 	y = int(N - ((m > 2) ? 4716 : 4715));
 }
 
-int newYearDetector() {
+int newYear() {
     // add validation if year1 < year2
     int day, month, year1, year2;
     day = 01;
@@ -75,7 +75,7 @@ int newYearDetector() {
     return 0;
 }
 
-int dayOfWeekDetector() {
+int dayOfWeek() {
     int day, month, year;
     char k;
     string l[7] = { "Неділя", "Понеділок", "Вівторок", "Середа", "Четвер", "П'ятниця", "Субота" };
