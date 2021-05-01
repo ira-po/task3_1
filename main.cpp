@@ -125,7 +125,6 @@ int checkLeapYearsBetween(int y1, int y2) {
     return count;
 }
 
-// problem somewhere here
 int calculateDaysFor(int m1, int months_count) {
     int months [12] = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
     int days = 0;
@@ -135,12 +134,6 @@ int calculateDaysFor(int m1, int months_count) {
         if (i > 11) {
             k = i % 12;
         }
-        // debug section
-        // cout << " k:";
-        // cout << k;
-        // cout << " i:";
-        // cout << i;
-
         days = days + months[k];
     }
     cout << days << endl;
@@ -158,14 +151,6 @@ int daysBetweenDates() {
     cin >> d2 >> m2 >> y2;
 
     //TODO validate date1 < date2 !!!
-
-    // debug section
-    // cout << d1 << endl;
-    // cout << m1 << endl;
-    // cout << y1 << endl;
-    // cout << d2 << endl;
-    // cout << m2 << endl;
-    // cout << y2 << endl;
 
     leap_years_count = checkLeapYearsBetween(y1, y2);
 
