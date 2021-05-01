@@ -112,71 +112,68 @@ int dayOfWeekFrom() {
     return 0;
 }
 
-int daysBetweenDates() {
-    int d1, m1, y1, d2, m2, y2;
-    int x, y = 0;
-    int leap, k;
+int checkLeapYearsBetween(int y1, int y2) {
+    int leap = y1;
+    int count = 0;
+    while (leap < y2) {
+        if (leap % 4 == 0 && leap % 100 != 0 || leap % 400 == 0) {
+            count++;
+        }
+
+        leap++;
+    }
+    return count;
+}
+
+// problem somewhere here
+int calculateDaysFor(int m1, int months_count) {
     int months [12] = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
+    int days = 0;
+    cout << m1 << endl;
+    cout << months_count << endl;
+    for (int i = m1-1; i <= (months_count); i++) {
+        int k = i;
+        if (i > 11) {
+            k = 0;
+        }
+        days = days + months[k];
+    }
+    cout << days << endl;
+
+    return days;
+}
+
+int daysBetweenDates() {
+    int d1, m1, y1, d2, m2, y2, k, leap_years_count, y_diff_in_months, m_diff_in_days;
+    int output = 0;
 
     cout << "Введiть початкову дату (через пробiл) : ";
     cin >> d1 >> m1 >> y1;
     cout << "Введiть кiнцеву дату (через пробiл) : ";
     cin >> d2 >> m2 >> y2;
 
-    // validate start date < end date
+    // validate date1 < date2 !!!
 
+    // debug section
+    // cout << d1 << endl;
+    // cout << m1 << endl;
+    // cout << y1 << endl;
+    // cout << d2 << endl;
+    // cout << m2 << endl;
+    // cout << y2 << endl;
 
-    leap = y1;
-    k = 0;
-    while (leap <= y2)
-    {
-        // високосний рік
-        if (leap % 4 == 0 && leap % 100 != 0 || leap % 400 == 0)
-        {
-            k = k + 1;
-        }
+    leap_years_count = checkLeapYearsBetween(y1, y2);
 
-        leap++;
-    }
+    int y_diff = y2 - y1;
+    y_diff_in_months = y_diff * 12;
 
+    int m_diff = (m2 - m1) + y_diff_in_months;
+    m_diff_in_days = calculateDaysFor(m1, m_diff);
 
+    int d_diff = d2 - d1;
+    output = d_diff + leap_years_count + m_diff_in_days;
 
-    // if (m1 == 1) { x = d1; }
-    // else if (m1 == 2) { x = month1 + a; }
-    // else if (b == 3) { x = month1 + month2 + a; }
-    // else if (b == 4) { x = month1 + month2 + month3 + a; }
-    // else if (b == 5) { x = month1 + month2 + month3 + month4 + a; }
-    // else if (b == 6) { x = month1 + month2 + month3 + month4 + month5 + a; }
-    // else if (b == 7) { x = month1 + month2 + month3 + month4 + month5 + month6 + a; }
-    // else if (b == 8) { x = month1 + month2 + month3 + month4 + month5 + month6 + month7 + a; }
-    // else if (b == 9) { x = month1 + month2 + month3 + month4 + month5 + month6 + month7 + month8 + a; }
-    // else if (b == 10) { x = month1 + month2 + month3 + month4 + month5 + month6 + month7 + month8 + month9 + a; }
-    // else if (b == 11) { x = month1 + month2 + month3 + month4 + month5 + month6 + month7 + month8 + month9 + month10 + a; }
-    // else if (b == 12) { x = month1 + month2 + month3 + month4 + month5 + month6 + month7 + month8 + month9 + month10 + month11 + a; }
-
-    // if (e == 1) { y = d; }
-    // else if (e == 2) { y = month1 + d; }
-    // else if (e == 3) { y = month1 + month2 + d; }
-    // else if (e == 4) { y = month1 + month2 + month3 + d; }
-    // else if (e == 5) { y = month1 + month2 + month3 + month4 + d; }
-    // else if (e == 6) { y = month1 + month2 + month3 + month4 + month5 + d; }
-    // else if (e == 7) { y = month1 + month2 + month3 + month4 + month5 + month6 + d; }
-    // else if (e == 8) { y = month1 + month2 + month3 + month4 + month5 + month6 + month7 + d; }
-    // else if (e == 9) { y = month1 + month2 + month3 + month4 + month5 + month6 + month7 + month8 + d; }
-    // else if (e == 10) { y = month1 + month2 + month3 + month4 + month5 + month6 + month7 + month8 + month9 + d; }
-    // else if (e == 11) { y = month1 + month2 + month3 + month4 + month5 + month6 + month7 + month8 + month9 + month10 + d; }
-    // else if (e == 12) { y = month1 + month2 + month3 + month4 + month5 + month6 + month7 + month8 + month9 + month10 + month11 + d; }
-    // if ((c % 4 == 0 && leap % 100 != 0 || leap % 400 == 0) && b > 2) { k = k - 1; }
-    // if ((f % 4 == 0 && leap % 100 != 0 || leap % 400 == 0) && d <= 29 && e < 3) { k = k - 1; }
-
-
-    if (y1 == y2)
-    {
-        cout << "Кiлькiсть днiв якi пройшли вiд дати1 до дати2: " << (y - x) + k << endl;
-    }
-    else
-        cout << "Кiлькiсть днiв якi пройшли вiд дати1 до дати2:" << (y2 - y1) * 365 + ((y - x) + k) << endl;
-    cout << k;
+    cout << "Кiлькiсть днiв якi пройшли вiд дати1 до дати2: " << output << endl;
     return 0;
 }
 
