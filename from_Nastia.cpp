@@ -18,9 +18,9 @@ int main()
 {
     int intyear, count = 0;
     char C;
-    string S[7] = { "Неділя", "Понеділок", "Вівторок", "Середа", "Четвер", "П'ятниця", "Субота" };
+    string S[7] = { "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" };
     //cout << S[5];
-    cout << "Введіть рік:";
+    cout << "Enter a Year:";
     cin >> intyear;
 
     if (S[5] == S[Date(13, 01, intyear)])
@@ -73,7 +73,7 @@ int main()
     }
 
 
-    cout << "Кількість пятниць 13-те у " << intyear << " році: " << count;
+    cout << "Fridays 13th count" << intyear << " year: " << count;
 
     return 0;
 }

@@ -56,6 +56,137 @@ void GDate(long JD, int& y, int& m, int& d)
 	y = int(N - ((m > 2) ? 4716 : 4715));
 }
 
+int newYearDetector() {
+    // add validation if year1 < year2
+    int day, month, year1, year2;
+    day = 01;
+    month = 01;
+    char c;
+    string d[7] = { "Недiля", "Понедiлок", "Вiвторок", "Середа", "Четвер", "П'ятниця", "Субота" };
+    cout << "Введiть початковий рiк: ";
+    cin >> year1;
+    cout << "Введiть кiнцевий рiк: ";
+    cin >> year2;
+    for (int i = year1; i < year2; i++) {
+        cout << d[Date1(day, month, i + 1)] << endl;
+    }
+
+    system("pause");
+    return 0;
+}
+
+int dayOfWeekDetector() {
+    int day, month, year;
+    char k;
+    string l[7] = { "Неділя", "Понеділок", "Вівторок", "Середа", "Четвер", "П'ятниця", "Субота" };
+    cout << "Введіть дату вашого народження (через пробіл):";
+    cin >> day >> k >> month >> k >> year;
+    cout << l[Date2(day, month, year)] << endl;
+
+    system("pause");
+    return 0;
+}
+
+int dayOfWeekFrom() {
+    char C;
+    int day, month, year;
+    cout << "Введіть дату(через пробіл): ";
+    cin >> day >> C >> month >> C >> year;
+    cout << "Ваша дата: " << day << "." << month << "." << year << endl;
+    long jd = JDay(year, month, day);
+    int m;
+    cout << "На скільки днів Ви хочете повернутись назад?" << endl;
+    cin >> m;
+
+    if (m > 0)
+    {
+        cout << "Дата через " << m << " днів: ";
+        GDate(jd - m - 2, year, month, day);
+        cout << day << "." << month << "." << year << endl;
+        string S[7] = { "Неділя", "Понеділок", "Вівторок", "Середа", "Четвер", "П'ятниця", "Субота" };
+        cout << S[Date2(day, month, year)] << endl;
+    }
+
+    system("pause");
+
+    return 0;
+}
+
+int daysBetweenDates() {
+    int a, b, c, d, e, f, x, y = 0;
+    int leap, k;
+    int month1 = 31,
+        month2 = 28,
+        month3 = 31,
+        month4 = 30,
+        month5 = 31,
+        month6 = 30,
+        month7 = 31,
+        month8 = 31,
+        month9 = 30,
+        month10 = 31,
+        month11 = 30,
+        month12 = 31;
+
+    cout << "Введiть початкову дату (через пробiл) : ";
+    cin >> a >> b >> c;
+    cout << "Введiть кiнцеву дату (через пробiл) : ";
+    cin >> d >> e >> f;
+
+
+    leap = c;
+    k = 0;
+    while (leap <= f)
+    {
+
+        if (leap % 4 == 0 && leap % 100 != 0 || leap % 400 == 0)
+        {
+            k = k + 1;
+        }
+
+        leap++;
+
+    }
+
+
+    if (b == 1) { x = a; }
+    else if (b == 2) { x = month1 + a; }
+    else if (b == 3) { x = month1 + month2 + a; }
+    else if (b == 4) { x = month1 + month2 + month3 + a; }
+    else if (b == 5) { x = month1 + month2 + month3 + month4 + a; }
+    else if (b == 6) { x = month1 + month2 + month3 + month4 + month5 + a; }
+    else if (b == 7) { x = month1 + month2 + month3 + month4 + month5 + month6 + a; }
+    else if (b == 8) { x = month1 + month2 + month3 + month4 + month5 + month6 + month7 + a; }
+    else if (b == 9) { x = month1 + month2 + month3 + month4 + month5 + month6 + month7 + month8 + a; }
+    else if (b == 10) { x = month1 + month2 + month3 + month4 + month5 + month6 + month7 + month8 + month9 + a; }
+    else if (b == 11) { x = month1 + month2 + month3 + month4 + month5 + month6 + month7 + month8 + month9 + month10 + a; }
+    else if (b == 12) { x = month1 + month2 + month3 + month4 + month5 + month6 + month7 + month8 + month9 + month10 + month11 + a; }
+
+    if (e == 1) { y = d; }
+    else if (e == 2) { y = month1 + d; }
+    else if (e == 3) { y = month1 + month2 + d; }
+    else if (e == 4) { y = month1 + month2 + month3 + d; }
+    else if (e == 5) { y = month1 + month2 + month3 + month4 + d; }
+    else if (e == 6) { y = month1 + month2 + month3 + month4 + month5 + d; }
+    else if (e == 7) { y = month1 + month2 + month3 + month4 + month5 + month6 + d; }
+    else if (e == 8) { y = month1 + month2 + month3 + month4 + month5 + month6 + month7 + d; }
+    else if (e == 9) { y = month1 + month2 + month3 + month4 + month5 + month6 + month7 + month8 + d; }
+    else if (e == 10) { y = month1 + month2 + month3 + month4 + month5 + month6 + month7 + month8 + month9 + d; }
+    else if (e == 11) { y = month1 + month2 + month3 + month4 + month5 + month6 + month7 + month8 + month9 + month10 + d; }
+    else if (e == 12) { y = month1 + month2 + month3 + month4 + month5 + month6 + month7 + month8 + month9 + month10 + month11 + d; }
+    if ((c % 4 == 0 && leap % 100 != 0 || leap % 400 == 0) && b > 2) { k = k - 1; }
+    if ((f % 4 == 0 && leap % 100 != 0 || leap % 400 == 0) && d <= 29 && e < 3) { k = k - 1; }
+
+    if (c == f)
+    {
+        cout << "Кiлькiсть днiв якi пройшли вiд дати1 до дати2: " << (y - x) + k << endl;
+    }
+    else
+        cout << "Кiлькiсть днiв якi пройшли вiд дати1 до дати2:" << (f - c) * 365 + ((y - x) + k) << endl;
+    cout << k;
+    return 0;
+}
+
 int main()
 {
 	setlocale(LC_ALL, "ukr");
@@ -68,151 +199,25 @@ int main()
 	cout << "Завершити програму - 7" << endl;
 	int t = 0;
 	cin >> t;
+
 	while (t != 7)
 	{
-		if (t == 1)
-		{
-			int a, b, c, d, e, f, x, y = 0;
-			int leap, k;
-			int month1 = 31,
-				month2 = 28,
-				month3 = 31,
-				month4 = 30,
-				month5 = 31,
-				month6 = 30,
-				month7 = 31,
-				month8 = 31,
-				month9 = 30,
-				month10 = 31,
-				month11 = 30,
-				month12 = 31;
-
-			cout << "Введiть початкову дату (через пробiл) : ";
-			cin >> a >> b >> c;
-			cout << "Введiть кiнцеву дату (через пробiл) : ";
-			cin >> d >> e >> f;
-
-
-			leap = c;
-			k = 0;
-			while (leap <= f)
-			{
-
-				if (leap % 4 == 0 && leap % 100 != 0 || leap % 400 == 0)
-				{
-					k = k + 1;
-				}
-
-				leap++;
-
-			}
-
-
-			if (b == 1) { x = a; }
-			else if (b == 2) { x = month1 + a; }
-			else if (b == 3) { x = month1 + month2 + a; }
-			else if (b == 4) { x = month1 + month2 + month3 + a; }
-			else if (b == 5) { x = month1 + month2 + month3 + month4 + a; }
-			else if (b == 6) { x = month1 + month2 + month3 + month4 + month5 + a; }
-			else if (b == 7) { x = month1 + month2 + month3 + month4 + month5 + month6 + a; }
-			else if (b == 8) { x = month1 + month2 + month3 + month4 + month5 + month6 + month7 + a; }
-			else if (b == 9) { x = month1 + month2 + month3 + month4 + month5 + month6 + month7 + month8 + a; }
-			else if (b == 10) { x = month1 + month2 + month3 + month4 + month5 + month6 + month7 + month8 + month9 + a; }
-			else if (b == 11) { x = month1 + month2 + month3 + month4 + month5 + month6 + month7 + month8 + month9 + month10 + a; }
-			else if (b == 12) { x = month1 + month2 + month3 + month4 + month5 + month6 + month7 + month8 + month9 + month10 + month11 + a; }
-
-			if (e == 1) { y = d; }
-			else if (e == 2) { y = month1 + d; }
-			else if (e == 3) { y = month1 + month2 + d; }
-			else if (e == 4) { y = month1 + month2 + month3 + d; }
-			else if (e == 5) { y = month1 + month2 + month3 + month4 + d; }
-			else if (e == 6) { y = month1 + month2 + month3 + month4 + month5 + d; }
-			else if (e == 7) { y = month1 + month2 + month3 + month4 + month5 + month6 + d; }
-			else if (e == 8) { y = month1 + month2 + month3 + month4 + month5 + month6 + month7 + d; }
-			else if (e == 9) { y = month1 + month2 + month3 + month4 + month5 + month6 + month7 + month8 + d; }
-			else if (e == 10) { y = month1 + month2 + month3 + month4 + month5 + month6 + month7 + month8 + month9 + d; }
-			else if (e == 11) { y = month1 + month2 + month3 + month4 + month5 + month6 + month7 + month8 + month9 + month10 + d; }
-			else if (e == 12) { y = month1 + month2 + month3 + month4 + month5 + month6 + month7 + month8 + month9 + month10 + month11 + d; }
-			if ((c % 4 == 0 && leap % 100 != 0 || leap % 400 == 0) && b > 2) { k = k - 1; }
-			if ((f % 4 == 0 && leap % 100 != 0 || leap % 400 == 0) && d <= 29 && e < 3) { k = k - 1; }
-
-			if (c == f)
-			{
-				cout << "Кiлькiсть днiв якi пройшли вiд дати1 до дати2: " << (y - x) + k << endl;
-			}
-			else
-				cout << "Кiлькiсть днiв якi пройшли вiд дати1 до дати2:" << (f - c) * 365 + ((y - x) + k) << endl;
-			cout << k;
-			return 0;
-		}
-		else if (t == 2)
-		{
-			int day, month, year1, year2;
-			day = 01;
-			month = 01;
-			char c;
-			string d[7] = { "Недiля", "Понедiлок", "Вiвторок", "Середа", "Четвер", "П'ятниця", "Субота" };
-			cout << "Введiть початковий рiк: ";
-			cin >> year1;
-			cout << "Введiть кiнцевий рiк: ";
-			cin >> year2;
-			for (int i = year1; i < year2; i++)
-			{
-				cout << d[Date1(day, month, i + 1)] << endl;
-			}
-
-			system("pause");
-			return 0;
-		}
-		else if (t == 3)
-		{
+		if (t == 1){
+			return daysBetweenDates();
+		} else if (t == 2) {
+			return newYear();
+		} else if (t == 3) {
 			cout  << "Немає програми" << endl;
-		}
-		else if (t == 4)
-		{
-			int day, month, year;
-			char k;
-			string l[7] = { "Неділя", "Понеділок", "Вівторок", "Середа", "Четвер", "П'ятниця", "Субота" };
-			cout << "Введіть дату вашого народження (через пробіл):";
-			cin >> day >> k >> month >> k >> year;
-			cout << l[Date2(day, month, year)] << endl;
-
-			system("pause");
-			return 0;
-		}
-		else if (t == 5)
-		{
-		char C;
-		int day, month, year;
-		cout << "Введіть дату(через пробіл): ";
-		cin >> day >> C >> month >> C >> year;
-		cout << "Ваша дата: " << day << "." << month << "." << year << endl;
-		long jd = JDay(year, month, day);
-		int m;
-		cout << "На скільки днів Ви хочете повернутись назад?" << endl;
-		cin >> m;
-
-		if (m > 0)
-		{
-			cout << "Дата через " << m << " днів: ";
-			GDate(jd - m - 2, year, month, day);
-			cout << day << "." << month << "." << year << endl;
-			string S[7] = { "Неділя", "Понеділок", "Вівторок", "Середа", "Четвер", "П'ятниця", "Субота" };
-			cout << S[Date2(day, month, year)] << endl;
-		}
-
-		system("pause");
-
-		return 0;
-		}
-		else if (t == 6)
-		{
-		cout << "Немає програми" << endl;
-		}
-		else if (t == 7)
-		{
+		} else if (t == 4) {
+			return dayOfWeek();
+		} else if (t == 5) {
+    		return dayOfWeekFrom();
+		} else if (t == 6) {
+		  cout << "Немає програми" << endl;
+		} else if (t == 7) {
 			break;
 		}
+
 		cin >> t;
 	}
 }
