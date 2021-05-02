@@ -4,18 +4,7 @@
 using namespace std;
 
 
-int Date1(int day, int month, int year)
-{
-	int a, y, m, l;
-	a = (14 - month) / 12;
-	y = year - a;
-	m = month + 12 * a - 2;
-	l = 7000 + (day + y + y / 4 - y / 100 + y / 400 + (31 * m) / 12);
-	return l % 7;
-}
-
-int Date2(int day, int month, int year)
-{
+int DateIndex(int day, int month, int year) {
 	int a, y, m, r;
 	a = (14 - month) / 12;
 	y = year - a;
@@ -62,13 +51,13 @@ int newYear() {
     day = 01;
     month = 01;
     char c;
-    string d[7] = { "Недiля", "Понедiлок", "Вiвторок", "Середа", "Четвер", "П'ятниця", "Субота" };
+    string day_names[7] = { "Недiля", "Понедiлок", "Вiвторок", "Середа", "Четвер", "П'ятниця", "Субота" };
     cout << "Введiть початковий рiк: ";
     cin >> year1;
     cout << "Введiть кiнцевий рiк: ";
     cin >> year2;
     for (int i = year1; i < year2; i++) {
-        cout << d[Date1(day, month, i + 1)] << endl;
+        cout << day_names[DateIndex(day, month, i + 1)] << endl;
     }
 
     system("pause");
@@ -78,12 +67,11 @@ int newYear() {
 int dayOfWeek() {
     int day, month, year;
     char k;
-    string l[7] = { "Неділя", "Понеділок", "Вівторок", "Середа", "Четвер", "П'ятниця", "Субота" };
+    string day_names[7] = { "Неділя", "Понеділок", "Вівторок", "Середа", "Четвер", "П'ятниця", "Субота" };
     cout << "Введіть дату вашого народження (через пробіл):";
     cin >> day >> k >> month >> k >> year;
-    cout << l[Date2(day, month, year)] << endl;
+    cout << day_names[DateIndex(day, month, year)] << endl;
 
-    system("pause");
     return 0;
 }
 
@@ -103,11 +91,9 @@ int dayOfWeekFrom() {
         cout << "Дата через " << m << " днів: ";
         GDate(jd - m - 2, year, month, day);
         cout << day << "." << month << "." << year << endl;
-        string S[7] = { "Неділя", "Понеділок", "Вівторок", "Середа", "Четвер", "П'ятниця", "Субота" };
-        cout << S[Date2(day, month, year)] << endl;
+        string day_names[7] = { "Неділя", "Понеділок", "Вівторок", "Середа", "Четвер", "П'ятниця", "Субота" };
+        cout << day_names[DateIndex(day, month, year)] << endl;
     }
-
-    system("pause");
 
     return 0;
 }
@@ -122,6 +108,7 @@ int checkLeapYearsBetween(int y1, int y2) {
 
         leap++;
     }
+
     return count;
 }
 
@@ -175,8 +162,8 @@ int main()
 	cout << "Знайти на якi днi тижня припаде новий рiк на промiжку вiд year1 до year2 натиснiть 2" << endl;
 	cout << "Знайти скiльки п'ятниць 13 було(буде) в заданому роцi year2 натиснiть 3" << endl;
 	cout << "Знайти в який день тижня ви народилися натиснiть 4" << endl;
-	cout << "Визначити який день тижня та яка дата була k днiв тому вiд дати 2, натиснiть 5" << endl;
-	cout << "Знайти першу п'ятницю 13 яка буде пiсля заданої дати 2, назвiть 6" << endl;
+	cout << "Визначити який день тижня та яка дата була k днiв тому вiд дати, натиснiть 5" << endl;
+	cout << "Знайти першу п'ятницю 13 яка буде пiсля заданої дати, натиснiть 6" << endl;
 	cout << "Завершити програму - 7" << endl;
 	cin >> t;
 
