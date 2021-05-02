@@ -13,6 +13,22 @@ int DateIndex(int day, int month, int year) {
 	return r % 7;
 }
 
+bool isValidDateRange(int d1, int m1, int y1, int d2, int m2, int y2) {
+    if (y1 <= y2) {
+        if (m1 <= m2) {
+            if (d1 <= d2) {
+                return true;
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    } else {
+        return false;
+    }
+}
+
 
 long JDay(int year, int month, int day)
 {
@@ -46,22 +62,26 @@ void GDate(long JD, int& y, int& m, int& d)
 }
 
 int newYear() {
-    // add validation if year1 < year2
-    int day, month, year1, year2;
-    day = 01;
-    month = 01;
+    int year1, year2;
+    int day = 01;
+    int month = 01;
     char c;
     string day_names[7] = { "Недiля", "Понедiлок", "Вiвторок", "Середа", "Четвер", "П'ятниця", "Субота" };
     cout << "Введiть початковий рiк: ";
     cin >> year1;
     cout << "Введiть кiнцевий рiк: ";
     cin >> year2;
-    for (int i = year1; i < year2; i++) {
-        cout << day_names[DateIndex(day, month, i + 1)] << endl;
-    }
 
-    system("pause");
-    return 0;
+    if (year1 <= year2) {
+        for (int i = year1; i < year2; i++) {
+            cout << day_names[DateIndex(day, month, i + 1)] << endl;
+        }
+
+        return 0;
+    } else {
+        cout << "Неправильно введені дані!" << endl;
+        return 0;
+    }
 }
 
 int dayOfWeek() {
@@ -128,6 +148,17 @@ int calculateDaysFor(int m1, int months_count) {
     return days;
 }
 
+int fridays13ForYear() {
+    int d, m, y;
+    int output = 0;
+    cout << "Введiть рік : ";
+    cin >> d >> m >> y;
+
+
+    // TODO use code from task 6
+    return output;
+}
+
 int daysBetweenDates() {
     int d1, m1, y1, d2, m2, y2, k, leap_years_count, y_diff_in_months, m_diff_in_days;
     int output = 0;
@@ -137,21 +168,25 @@ int daysBetweenDates() {
     cout << "Введiть кiнцеву дату (через пробiл) : ";
     cin >> d2 >> m2 >> y2;
 
-    //TODO validate date1 < date2 !!!
+    if (isValidDateRange(d1, m1, y1, d2, m2, y2)) {
+        leap_years_count = checkLeapYearsBetween(y1, y2);
 
-    leap_years_count = checkLeapYearsBetween(y1, y2);
+        int y_diff = y2 - y1;
+        y_diff_in_months = y_diff * 12;
 
-    int y_diff = y2 - y1;
-    y_diff_in_months = y_diff * 12;
+        int m_diff = (m2 - m1) + y_diff_in_months;
+        m_diff_in_days = calculateDaysFor(m1, m_diff);
 
-    int m_diff = (m2 - m1) + y_diff_in_months;
-    m_diff_in_days = calculateDaysFor(m1, m_diff);
+        int d_diff = d2 - d1;
+        output = d_diff + leap_years_count + m_diff_in_days;
 
-    int d_diff = d2 - d1;
-    output = d_diff + leap_years_count + m_diff_in_days;
+        cout << "Кiлькiсть днiв якi пройшли вiд дати1 до дати2: " << output << endl;
+        return 0;
+    } else {
+        cout << "Неправильно введені дані!" << endl;
+        return 0;
+    }
 
-    cout << "Кiлькiсть днiв якi пройшли вiд дати1 до дати2: " << output << endl;
-    return 0;
 }
 
 int main()
@@ -160,7 +195,7 @@ int main()
 	setlocale(LC_ALL, "ukr");
 	cout << "Для того щоб знайти скiльки днiв пройшло вiд першої дати натиснiть 1" << endl;
 	cout << "Знайти на якi днi тижня припаде новий рiк на промiжку вiд year1 до year2 натиснiть 2" << endl;
-	cout << "Знайти скiльки п'ятниць 13 було(буде) в заданому роцi year2 натиснiть 3" << endl;
+	cout << "Знайти скiльки п'ятниць 13 було(буде) в заданому роцi year1 натиснiть 3" << endl;
 	cout << "Знайти в який день тижня ви народилися натиснiть 4" << endl;
 	cout << "Визначити який день тижня та яка дата була k днiв тому вiд дати, натиснiть 5" << endl;
 	cout << "Знайти першу п'ятницю 13 яка буде пiсля заданої дати, натиснiть 6" << endl;
@@ -172,7 +207,7 @@ int main()
 	} else if (t == 2) {
 		return newYear();
 	} else if (t == 3) {
-		cout  << "Немає програми" << endl;
+		return fridays13ForYear();
 	} else if (t == 4) {
 		return dayOfWeek();
 	} else if (t == 5) {
