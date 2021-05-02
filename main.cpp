@@ -169,6 +169,7 @@ int daysBetweenDates() {
 
 int main()
 {
+	int t;
 	setlocale(LC_ALL, "ukr");
 	cout << "Для того щоб знайти скiльки днiв пройшло вiд першої дати натиснiть 1" << endl;
 	cout << "Знайти на якi днi тижня припаде новий рiк на промiжку вiд year1 до year2 натиснiть 2" << endl;
@@ -177,28 +178,22 @@ int main()
 	cout << "Визначити який день тижня та яка дата була k днiв тому вiд дати 2, натиснiть 5" << endl;
 	cout << "Знайти першу п'ятницю 13 яка буде пiсля заданої дати 2, назвiть 6" << endl;
 	cout << "Завершити програму - 7" << endl;
-	int t = 0;
 	cin >> t;
 
-	while (t != 7)
-	{
-		if (t == 1){
-			return daysBetweenDates();
-		} else if (t == 2) {
-			return newYear();
-		} else if (t == 3) {
-			cout  << "Немає програми" << endl;
-		} else if (t == 4) {
-			return dayOfWeek();
-		} else if (t == 5) {
-    		return dayOfWeekFrom();
-		} else if (t == 6) {
-		  cout << "Немає програми" << endl;
-		} else if (t == 7) {
-			break;
-		}
-
-		cin >> t;
+	if (t == 1){
+		return daysBetweenDates();
+	} else if (t == 2) {
+		return newYear();
+	} else if (t == 3) {
+		cout  << "Немає програми" << endl;
+	} else if (t == 4) {
+		return dayOfWeek();
+	} else if (t == 5) {
+		return dayOfWeekFrom();
+	} else if (t == 6) {
+        cout << "Немає програми" << endl;
+	} else if (t == 7) {
+		return 0;
 	}
 }
 
